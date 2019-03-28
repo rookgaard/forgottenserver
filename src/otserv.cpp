@@ -23,8 +23,6 @@
 
 #include "game.h"
 
-#include "iomarket.h"
-
 #ifndef _WIN32
 #include <csignal> // for sigemptyset()
 #endif
@@ -32,7 +30,6 @@
 #include "configmanager.h"
 #include "scriptmanager.h"
 #include "rsa.h"
-#include "protocolold.h"
 #include "protocollogin.h"
 #include "protocolstatus.h"
 #include "databasemanager.h"
@@ -42,6 +39,8 @@
 DatabaseTasks g_databaseTasks;
 Dispatcher g_dispatcher;
 Scheduler g_scheduler;
+
+IPList serverIPs;
 
 Game g_game;
 ConfigManager g_config;
@@ -226,13 +225,6 @@ void mainLoader(int, char*[], ServiceManager* services)
 		return;
 	}
 
-	std::cout << ">> Loading outfits" << std::endl;
-	Outfits* outfits = Outfits::getInstance();
-	if (!outfits->loadFromXml()) {
-		startupErrorMessage("Unable to load outfits!");
-		return;
-	}
-
 	std::cout << ">> Checking world type... " << std::flush;
 	std::string worldType = asLowerCaseString(g_config.getString(ConfigManager::WORLD_TYPE));
 	if (worldType == "pvp") {
@@ -267,9 +259,6 @@ void mainLoader(int, char*[], ServiceManager* services)
 	// OT protocols
 	services->add<ProtocolStatus>(g_config.getNumber(ConfigManager::STATUS_PORT));
 
-	// Legacy login protocol
-	services->add<ProtocolOld>(g_config.getNumber(ConfigManager::LOGIN_PORT));
-
 	RentPeriod_t rentPeriod;
 	std::string strRentPeriod = asLowerCaseString(g_config.getString(ConfigManager::HOUSE_RENT_PERIOD));
 
@@ -287,10 +276,44 @@ void mainLoader(int, char*[], ServiceManager* services)
 
 	g_game.map.houses.payHouses(rentPeriod);
 
-	IOMarket::checkExpiredOffers();
-	IOMarket::getInstance()->updateStatistics();
-
 	std::cout << ">> Loaded all modules, server starting up..." << std::endl;
+
+	std::pair<uint32_t, uint32_t> IpNetMask;
+	IpNetMask.first = inet_addr("127.0.0.1");
+	IpNetMask.second = 0xFFFFFFFF;
+	serverIPs.push_back(IpNetMask);
+
+	char szHostName[128];
+	if (gethostname(szHostName, 128) == 0) {
+		hostent* he = gethostbyname(szHostName);
+		if (he) {
+			unsigned char** addr = (unsigned char**)he->h_addr_list;
+			while (addr[0] != nullptr) {
+				IpNetMask.first = *(uint32_t*)(*addr);
+				IpNetMask.second = 0xFFFFFFFF;
+				serverIPs.push_back(IpNetMask);
+				addr++;
+			}
+		}
+	}
+
+	std::string ip = g_config.getString(ConfigManager::IP);
+
+	uint32_t resolvedIp = inet_addr(ip.c_str());
+	if (resolvedIp == INADDR_NONE) {
+		struct hostent* he = gethostbyname(ip.c_str());
+		if (!he) {
+			std::ostringstream ss;
+			ss << "ERROR: Cannot resolve " << ip << "!" << std::endl;
+			startupErrorMessage(ss.str());
+			return;
+		}
+		resolvedIp = *(uint32_t*)he->h_addr;
+	}
+
+	IpNetMask.first = resolvedIp;
+	IpNetMask.second = 0;
+	serverIPs.push_back(IpNetMask);
 
 #ifndef _WIN32
 	if (getuid() == 0 || geteuid() == 0) {

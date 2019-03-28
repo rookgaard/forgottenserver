@@ -1,6 +1,6 @@
 local groundIds = {354, 355}
 
-function onUse(player, item, fromPosition, target, toPosition, isHotkey)
+function onUse(player, item, fromPosition, target, toPosition)
 	if toPosition.x == CONTAINER_POSITION then
 		return false
 	end

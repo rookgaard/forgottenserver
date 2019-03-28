@@ -510,62 +510,6 @@ MagicEffectNames magicEffectNames[] = {
 	{"purplenote",		CONST_ME_SOUND_PURPLE},
 	{"bluenote",		CONST_ME_SOUND_BLUE},
 	{"whitenote",		CONST_ME_SOUND_WHITE},
-	{"bubbles",		CONST_ME_BUBBLES},
-	{"dice",		CONST_ME_CRAPS},
-	{"giftwraps",		CONST_ME_GIFT_WRAPS},
-	{"yellowfirework",	CONST_ME_FIREWORK_YELLOW},
-	{"redfirework",		CONST_ME_FIREWORK_RED},
-	{"bluefirework",	CONST_ME_FIREWORK_BLUE},
-	{"stun",		CONST_ME_STUN},
-	{"sleep",		CONST_ME_SLEEP},
-	{"watercreature",	CONST_ME_WATERCREATURE},
-	{"groundshaker",	CONST_ME_GROUNDSHAKER},
-	{"hearts",		CONST_ME_HEARTS},
-	{"fireattack",		CONST_ME_FIREATTACK},
-	{"energyarea",		CONST_ME_ENERGYAREA},
-	{"smallclouds",		CONST_ME_SMALLCLOUDS},
-	{"holydamage",		CONST_ME_HOLYDAMAGE},
-	{"bigclouds",		CONST_ME_BIGCLOUDS},
-	{"icearea",		CONST_ME_ICEAREA},
-	{"icetornado",		CONST_ME_ICETORNADO},
-	{"iceattack",		CONST_ME_ICEATTACK},
-	{"stones",		CONST_ME_STONES},
-	{"smallplants",		CONST_ME_SMALLPLANTS},
-	{"carniphila",		CONST_ME_CARNIPHILA},
-	{"purpleenergy",	CONST_ME_PURPLEENERGY},
-	{"yellowenergy",	CONST_ME_YELLOWENERGY},
-	{"holyarea",		CONST_ME_HOLYAREA},
-	{"bigplants",		CONST_ME_BIGPLANTS},
-	{"cake",		CONST_ME_CAKE},
-	{"giantice",		CONST_ME_GIANTICE},
-	{"watersplash",		CONST_ME_WATERSPLASH},
-	{"plantattack",		CONST_ME_PLANTATTACK},
-	{"tutorialarrow",	CONST_ME_TUTORIALARROW},
-	{"tutorialsquare",	CONST_ME_TUTORIALSQUARE},
-	{"mirrorhorizontal",	CONST_ME_MIRRORHORIZONTAL},
-	{"mirrorvertical",	CONST_ME_MIRRORVERTICAL},
-	{"skullhorizontal",	CONST_ME_SKULLHORIZONTAL},
-	{"skullvertical",	CONST_ME_SKULLVERTICAL},
-	{"assassin",		CONST_ME_ASSASSIN},
-	{"stepshorizontal",	CONST_ME_STEPSHORIZONTAL},
-	{"bloodysteps",		CONST_ME_BLOODYSTEPS},
-	{"stepsvertical",	CONST_ME_STEPSVERTICAL},
-	{"yalaharighost",	CONST_ME_YALAHARIGHOST},
-	{"bats",		CONST_ME_BATS},
-	{"smoke",		CONST_ME_SMOKE},
-	{"insects",		CONST_ME_INSECTS},
-	{"dragonhead",		CONST_ME_DRAGONHEAD},
-	{"orcshaman",		CONST_ME_ORCSHAMAN},
-	{"orcshamanfire",	CONST_ME_ORCSHAMAN_FIRE},
-	{"thunder",		CONST_ME_THUNDER},
-	{"ferumbras",		CONST_ME_FERUMBRAS},
-	{"confettihorizontal",	CONST_ME_CONFETTI_HORIZONTAL},
-	{"confettivertical",	CONST_ME_CONFETTI_VERTICAL},
-	{"blacksmoke",		CONST_ME_BLACKSMOKE},
-	{"redsmoke",		CONST_ME_REDSMOKE},
-	{"yellowsmoke",		CONST_ME_YELLOWSMOKE},
-	{"greensmoke",		CONST_ME_GREENSMOKE},
-	{"purplesmoke",		CONST_ME_PURPLESMOKE},
 };
 
 ShootTypeNames shootTypeNames[] = {
@@ -584,41 +528,6 @@ ShootTypeNames shootTypeNames[] = {
 	{"snowball",		CONST_ANI_SNOWBALL},
 	{"powerbolt",		CONST_ANI_POWERBOLT},
 	{"poison",		CONST_ANI_POISON},
-	{"infernalbolt",	CONST_ANI_INFERNALBOLT},
-	{"huntingspear",	CONST_ANI_HUNTINGSPEAR},
-	{"enchantedspear",	CONST_ANI_ENCHANTEDSPEAR},
-	{"redstar",		CONST_ANI_REDSTAR},
-	{"greenstar",		CONST_ANI_GREENSTAR},
-	{"royalspear",		CONST_ANI_ROYALSPEAR},
-	{"sniperarrow",		CONST_ANI_SNIPERARROW},
-	{"onyxarrow",		CONST_ANI_ONYXARROW},
-	{"piercingbolt",	CONST_ANI_PIERCINGBOLT},
-	{"whirlwindsword",	CONST_ANI_WHIRLWINDSWORD},
-	{"whirlwindaxe",	CONST_ANI_WHIRLWINDAXE},
-	{"whirlwindclub",	CONST_ANI_WHIRLWINDCLUB},
-	{"etherealspear",	CONST_ANI_ETHEREALSPEAR},
-	{"ice",			CONST_ANI_ICE},
-	{"earth",		CONST_ANI_EARTH},
-	{"holy",		CONST_ANI_HOLY},
-	{"suddendeath",		CONST_ANI_SUDDENDEATH},
-	{"flasharrow",		CONST_ANI_FLASHARROW},
-	{"flammingarrow",	CONST_ANI_FLAMMINGARROW},
-	{"shiverarrow",		CONST_ANI_SHIVERARROW},
-	{"energyball",		CONST_ANI_ENERGYBALL},
-	{"smallice",		CONST_ANI_SMALLICE},
-	{"smallholy",		CONST_ANI_SMALLHOLY},
-	{"smallearth",		CONST_ANI_SMALLEARTH},
-	{"eartharrow",		CONST_ANI_EARTHARROW},
-	{"explosion",		CONST_ANI_EXPLOSION},
-	{"cake",		CONST_ANI_CAKE},
-	{"tarsalarrow",		CONST_ANI_TARSALARROW},
-	{"vortexbolt",		CONST_ANI_VORTEXBOLT},
-	{"prismaticbolt",	CONST_ANI_PRISMATICBOLT},
-	{"crystallinearrow",	CONST_ANI_CRYSTALLINEARROW},
-	{"drillbolt",		CONST_ANI_DRILLBOLT},
-	{"envenomedarrow",	CONST_ANI_ENVENOMEDARROW},
-	{"gloothspear",		CONST_ANI_GLOOTHSPEAR},
-	{"simplearrow",		CONST_ANI_SIMPLEARROW},
 };
 
 CombatTypeNames combatTypeNames[] = {
@@ -630,10 +539,6 @@ CombatTypeNames combatTypeNames[] = {
 	{"lifedrain",		COMBAT_LIFEDRAIN},
 	{"manadrain",		COMBAT_MANADRAIN},
 	{"healing",		COMBAT_HEALING},
-	{"drown",		COMBAT_DROWNDAMAGE},
-	{"ice",			COMBAT_ICEDAMAGE},
-	{"holy",		COMBAT_HOLYDAMAGE},
-	{"death",		COMBAT_DEATHDAMAGE},
 };
 
 AmmoTypeNames ammoTypeNames[] = {
@@ -648,18 +553,6 @@ AmmoTypeNames ammoTypeNames[] = {
 	{"largerock",		AMMO_STONE},
 	{"snowball",		AMMO_SNOWBALL},
 	{"powerbolt",		AMMO_BOLT},
-	{"infernalbolt",	AMMO_BOLT},
-	{"huntingspear",	AMMO_SPEAR},
-	{"enchantedspear",	AMMO_SPEAR},
-	{"royalspear",		AMMO_SPEAR},
-	{"sniperarrow",		AMMO_ARROW},
-	{"onyxarrow",		AMMO_ARROW},
-	{"piercingbolt",	AMMO_BOLT},
-	{"etherealspear",	AMMO_SPEAR},
-	{"flasharrow",		AMMO_ARROW},
-	{"flammingarrow",	AMMO_ARROW},
-	{"shiverarrow",		AMMO_ARROW},
-	{"eartharrow",		AMMO_ARROW},
 };
 
 WeaponActionNames weaponActionNames[] = {
@@ -674,8 +567,6 @@ SkullNames skullNames[] = {
 	{"green",	SKULL_GREEN},
 	{"white",	SKULL_WHITE},
 	{"red",		SKULL_RED},
-	{"black",	SKULL_BLACK},
-	{"orange",	SKULL_ORANGE},
 };
 
 MagicEffectClasses getMagicEffect(const std::string& strValue)
@@ -783,32 +674,6 @@ std::string getSkillName(uint8_t skillid)
 	}
 }
 
-uint32_t adlerChecksum(const uint8_t* data, size_t length)
-{
-	if (length > NETWORKMESSAGE_MAXSIZE) {
-		return 0;
-	}
-
-	const uint16_t adler = 65521;
-
-	uint32_t a = 1, b = 0;
-
-	while (length > 0) {
-		size_t tmp = length > 5552 ? 5552 : length;
-		length -= tmp;
-
-		do {
-			a += *data++;
-			b += a;
-		} while (--tmp);
-
-		a %= adler;
-		b %= adler;
-	}
-
-	return (b << 16) | a;
-}
-
 std::string ucfirst(std::string str)
 {
 	for (size_t i = 0; i < str.length(); ++i) {
@@ -879,14 +744,6 @@ size_t combatTypeToIndex(CombatType_t combatType)
 			return 6;
 		case COMBAT_HEALING:
 			return 7;
-		case COMBAT_DROWNDAMAGE:
-			return 8;
-		case COMBAT_ICEDAMAGE:
-			return 9;
-		case COMBAT_HOLYDAMAGE:
-			return 10;
-		case COMBAT_DEATHDAMAGE:
-			return 11;
 		default:
 			return 0;
 	}

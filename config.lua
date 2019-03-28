@@ -1,10 +1,8 @@
 -- Combat settings
 -- NOTE: valid values for worldType are: "pvp", "no-pvp" and "pvp-enforced"
 worldType = "pvp"
-hotkeyAimbotEnabled = true
 protectionLevel = 1
 killsToRedSkull = 3
-killsToBlackSkull = 6
 pzLocked = 60000
 removeChargesFromRunes = true
 timeToDecreaseFrags = 24 * 60 * 60 * 1000
@@ -46,22 +44,17 @@ timeBetweenExActions = 1000
 
 -- Map
 -- NOTE: set mapName WITHOUT .otbm at the end
-mapName = "forgotten"
-mapAuthor = "Komic"
-
--- Market
-marketOfferDuration = 30 * 24 * 60 * 60
-premiumToCreateMarketOffer = true
-checkExpiredMarketOffersEachMinutes = 60
-maxMarketOffersAtATimePerPlayer = 100
+mapName = "world"
+mapAuthor = "ond"
 
 -- MySQL
 mysqlHost = "127.0.0.1"
-mysqlUser = "forgottenserver"
+mysqlUser = ""
 mysqlPass = ""
-mysqlDatabase = "forgottenserver"
+mysqlDatabase = ""
 mysqlPort = 3306
 mysqlSock = ""
+passwordType = "sha1"
 
 -- Misc.
 allowChangeOutfit = true
@@ -70,6 +63,9 @@ kickIdlePlayerAfterMinutes = 15
 maxMessageBuffer = 4
 emoteSpells = false
 classicEquipmentSlots = false
+UHTrap = true
+-- Can walk/push over 2 items with height attribute (Parcels, boxes etc.)
+heightStackBlock = true
 
 -- Rates
 -- NOTE: rateExp is not used if you have enabled stages in data/XML/stages.xml
@@ -82,9 +78,6 @@ rateSpawn = 1
 -- Monsters
 deSpawnRange = 2
 deSpawnRadius = 50
-
--- Stamina
-staminaSystem = true
 
 -- Scripts
 warnUnsafeScripts = true

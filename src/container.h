@@ -112,9 +112,6 @@ class Container : public Item, public Cylinder
 		bool isUnlocked() const {
 			return unlocked;
 		}
-		bool hasPagination() const {
-			return pagination;
-		}
 
 		//cylinder implementations
 		virtual ReturnValue queryAdd(int32_t index, const Thing& thing, uint32_t count,
@@ -165,7 +162,6 @@ class Container : public Item, public Cylinder
 		uint32_t serializationCount;
 
 		bool unlocked;
-		bool pagination;
 
 		friend class ContainerIterator;
 		friend class IOMapSerialize;

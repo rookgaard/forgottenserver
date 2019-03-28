@@ -168,10 +168,6 @@ class Spell : public BaseSpell
 		bool playerRuneSpellCheck(Player* player, const Position& toPos);
 
 		uint8_t spellId;
-		SpellGroup_t group;
-		uint32_t groupCooldown;
-		SpellGroup_t secondaryGroup;
-		uint32_t secondaryGroupCooldown;
 
 		uint32_t mana;
 		uint32_t manaPercent;
@@ -295,13 +291,13 @@ class RuneSpell final : public Action, public Spell
 			return targetCreature;
 		}
 
-		bool executeUse(Player* player, Item* item, const Position& fromPosition, Thing* target, const Position& toPosition, bool isHotkey) final;
+		bool executeUse(Player* player, Item* item, const Position& fromPosition, Thing* target, const Position& toPosition) final;
 
 		bool castSpell(Creature* creature) final;
 		bool castSpell(Creature* creature, Creature* target) final;
 
 		//scripting
-		bool executeCastSpell(Creature* creature, const LuaVariant& var, bool isHotkey);
+		bool executeCastSpell(Creature* creature, const LuaVariant& var);
 
 		bool isInstant() const final {
 			return false;
@@ -316,7 +312,7 @@ class RuneSpell final : public Action, public Spell
 		static RuneSpellFunction Illusion;
 		static RuneSpellFunction Convince;
 
-		bool internalCastSpell(Creature* creature, const LuaVariant& var, bool isHotkey);
+		bool internalCastSpell(Creature* creature, const LuaVariant& var);
 
 		RuneSpellFunction* runeFunction;
 		uint16_t runeId;

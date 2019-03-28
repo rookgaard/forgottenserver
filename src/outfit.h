@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+#ifdef __PROTOCOL_800__
 
 #ifndef FS_OUTFIT_H_C56E7A707E3F422C8C93D9BE09916AA3
 #define FS_OUTFIT_H_C56E7A707E3F422C8C93D9BE09916AA3
@@ -32,11 +33,17 @@ struct Outfit {
 };
 
 struct ProtocolOutfit {
+#ifdef __PROTOCOL_800__
 	ProtocolOutfit(const std::string* name, uint16_t lookType, uint8_t addons) : name(name), lookType(lookType), addons(addons) {}
+#else
+	ProtocolOutfit(const std::string* name, uint16_t lookType) : name(name), lookType(lookType) {}
+#endif
 
 	const std::string* name;
 	uint16_t lookType;
+#ifdef __PROTOCOL_800__
 	uint8_t addons;
+#endif
 };
 
 class Outfits
@@ -58,4 +65,5 @@ class Outfits
 		std::vector<Outfit> outfits[PLAYERSEX_LAST + 1];
 };
 
+#endif
 #endif

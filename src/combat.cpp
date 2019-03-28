@@ -121,20 +121,8 @@ CombatType_t Combat::ConditionToDamageType(ConditionType_t type)
 		case CONDITION_BLEEDING:
 			return COMBAT_PHYSICALDAMAGE;
 
-		case CONDITION_DROWN:
-			return COMBAT_DROWNDAMAGE;
-
 		case CONDITION_POISON:
 			return COMBAT_EARTHDAMAGE;
-
-		case CONDITION_FREEZING:
-			return COMBAT_ICEDAMAGE;
-
-		case CONDITION_DAZZLED:
-			return COMBAT_HOLYDAMAGE;
-
-		case CONDITION_CURSED:
-			return COMBAT_DEATHDAMAGE;
 
 		default:
 			break;
@@ -152,20 +140,8 @@ ConditionType_t Combat::DamageToConditionType(CombatType_t type)
 		case COMBAT_ENERGYDAMAGE:
 			return CONDITION_ENERGY;
 
-		case COMBAT_DROWNDAMAGE:
-			return CONDITION_DROWN;
-
 		case COMBAT_EARTHDAMAGE:
 			return CONDITION_POISON;
-
-		case COMBAT_ICEDAMAGE:
-			return CONDITION_FREEZING;
-
-		case COMBAT_HOLYDAMAGE:
-			return CONDITION_DAZZLED;
-
-		case COMBAT_DEATHDAMAGE:
-			return CONDITION_CURSED;
 
 		case COMBAT_PHYSICALDAMAGE:
 			return CONDITION_BLEEDING;
@@ -288,10 +264,6 @@ bool Combat::isProtected(const Player* attacker, const Player* target)
 	}
 
 	if (attacker->getVocationId() == VOCATION_NONE || target->getVocationId() == VOCATION_NONE) {
-		return true;
-	}
-
-	if (attacker->getSkull() == SKULL_BLACK && attacker->getSkullClient(target) == SKULL_NONE) {
 		return true;
 	}
 
@@ -500,7 +472,7 @@ void Combat::CombatHealthFunc(Creature* caster, Creature* target, const CombatPa
 
 	if ((damage.primary.value < 0 || damage.secondary.value < 0) && caster) {
 		Player* targetPlayer = target->getPlayer();
-		if (targetPlayer && caster->getPlayer() && targetPlayer->getSkull() != SKULL_BLACK) {
+		if (targetPlayer && caster->getPlayer()) {
 			damage.primary.value /= 2;
 			damage.secondary.value /= 2;
 		}
@@ -604,13 +576,15 @@ void Combat::combatTileEffects(const SpectatorVec& list, Creature* caster, Tile*
 					if (itemId == ITEM_FIREFIELD_PVP_FULL) {
 						itemId = ITEM_FIREFIELD_NOPVP;
 					} else if (itemId == ITEM_POISONFIELD_PVP) {
-						itemId = ITEM_POISONFIELD_NOPVP;
-					} else if (itemId == ITEM_ENERGYFIELD_PVP) {
-						itemId = ITEM_ENERGYFIELD_NOPVP;
+itemId = ITEM_POISONFIELD_NOPVP;
 					}
-				} else if (itemId == ITEM_FIREFIELD_PVP_FULL || itemId == ITEM_POISONFIELD_PVP || itemId == ITEM_ENERGYFIELD_PVP) {
-					casterPlayer->addInFightTicks();
+ else if (itemId == ITEM_ENERGYFIELD_PVP) {
+	 itemId = ITEM_ENERGYFIELD_NOPVP;
+ }
 				}
+ else if (itemId == ITEM_FIREFIELD_PVP_FULL || itemId == ITEM_POISONFIELD_PVP || itemId == ITEM_ENERGYFIELD_PVP) {
+	 casterPlayer->addInFightTicks();
+ }
 			}
 		}
 
@@ -622,7 +596,8 @@ void Combat::combatTileEffects(const SpectatorVec& list, Creature* caster, Tile*
 		ReturnValue ret = g_game.internalAddItem(tile, item);
 		if (ret == RETURNVALUE_NOERROR) {
 			g_game.startDecay(item);
-		} else {
+		}
+		else {
 			delete item;
 		}
 	}
@@ -654,21 +629,6 @@ void Combat::addDistanceEffect(Creature* caster, const Position& fromPos, const 
 		if (!player) {
 			return;
 		}
-
-		switch (player->getWeaponType()) {
-			case WEAPON_AXE:
-				effect = CONST_ANI_WHIRLWINDAXE;
-				break;
-			case WEAPON_SWORD:
-				effect = CONST_ANI_WHIRLWINDSWORD;
-				break;
-			case WEAPON_CLUB:
-				effect = CONST_ANI_WHIRLWINDCLUB;
-				break;
-			default:
-				effect = CONST_ANI_NONE;
-				break;
-		}
 	}
 
 	if (effect != CONST_ANI_NONE) {
@@ -682,7 +642,8 @@ void Combat::CombatFunc(Creature* caster, const Position& pos, const AreaCombat*
 
 	if (caster) {
 		getCombatArea(caster->getPosition(), pos, area, tileList);
-	} else {
+	}
+	else {
 		getCombatArea(pos, pos, area, tileList);
 	}
 
@@ -709,20 +670,27 @@ void Combat::CombatFunc(Creature* caster, const Position& pos, const AreaCombat*
 	const int32_t rangeY = maxY + Map::maxViewportY;
 	g_game.map.getSpectators(list, pos, true, true, rangeX, rangeX, rangeY, rangeY);
 
+	bool bContinue = true;
+
 	for (Tile* tile : tileList) {
 		if (canDoCombat(caster, tile, params.aggressive) != RETURNVALUE_NOERROR) {
 			continue;
 		}
 
 		if (CreatureVector* creatures = tile->getCreatures()) {
-			const Creature* topCreature = tile->getTopCreature();
 			for (Creature* creature : *creatures) {
 				if (params.targetCasterOrTopMost) {
-					if (caster && caster->getTile() == tile) {
-						if (creature != caster) {
-							continue;
+					if (!g_config.getBoolean(ConfigManager::UH_TRAP) &&
+						(caster && caster->getTile() == tile)){
+						if (creature == caster) {
+							bContinue = false;
 						}
-					} else if (creature != topCreature) {
+					}
+					else if (creature == tile->getBottomCreature()) {
+						bContinue = false;
+					}
+
+					if (bContinue) {
 						continue;
 					}
 				}
@@ -1082,6 +1050,11 @@ AreaCombat::AreaCombat(const AreaCombat& rhs)
 
 void AreaCombat::getList(const Position& centerPos, const Position& targetPos, std::forward_list<Tile*>& list) const
 {
+	Tile* tile = g_game.map.getTile(targetPos);
+	if (tile->hasProperty(CONST_PROP_BLOCKPROJECTILE)) {
+		return;	
+	}	
+
 	const MatrixArea* area = getArea(centerPos, targetPos);
 	if (!area) {
 		return;
@@ -1096,7 +1069,7 @@ void AreaCombat::getList(const Position& centerPos, const Position& targetPos, s
 		for (uint32_t x = 0; x < cols; ++x) {
 			if (area->getValue(y, x) != 0) {
 				if (g_game.isSightClear(targetPos, tmpPos, true)) {
-					Tile* tile = g_game.map.getTile(tmpPos);
+					tile = g_game.map.getTile(tmpPos);
 					if (!tile) {
 						tile = new StaticTile(tmpPos.x, tmpPos.y, tmpPos.z);
 						g_game.map.setTile(tmpPos, tile);
