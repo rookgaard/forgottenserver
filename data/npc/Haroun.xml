@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Haroun" script="default.lua" walkinterval="2000" floorchange="0">
+    <health now="100" max="100" />
+    <look type="153" head="53" body="55" legs="35" feet="76" addons="2" />
+	<parameters>
+		<parameter key="message_greet" value="Hello |PLAYERNAME|. if you want sell me somes amulets and rings, just say {trade}." />
+		<parameter key="message_decline" value="Is |TOTALCOST| gold coins too much for you? Get out of here!" />
+	<parameter key="module_shop" value="1" />
+	<parameter key="shop_sellable" value="
+	club ring, 2309, 100; 
+	axe ring, 2208, 500;
+	death ring, 6300, 1000;
+	dwarven ring, 2213, 100;
+	energy ring, 2167, 100;
+	life ring, 2168, 50;
+	might ring, 2164, 250;
+	power ring, 2166, 50;
+	ring of healing, 2214, 100;
+	time ring, 2169, 100;
+	sword ring, 2207, 100;
+	stealth ring, 2165, 200;
+	gold ring, 2179, 8000;
+	wedding ring, 2121, 100;
+	terra amulet, 7887, 1500;
+	glacier amulet, 7888, 1500;
+	lightning pendant, 7889, 1500;
+	magma amulet, 7890, 1500;
+	stone skin amulet, 2197, 500;
+	elven amulet, 2198, 100;
+	garlic neclace, 2199, 50;
+	dragon neclace, 2201, 50;
+	platinum amulet, 2171, 2600"/>
+    <parameter key="shop_buyable" value="
+	might ring, 2164, 5000, 1;
+	life ring, 2168, 900, 1;
+	energy ring, 2167, 2000, 1;
+	power ring, 2166, 100, 1;
+	time ring, 2169, 2000, 1;
+	stealth ring, 2165, 5000, 1;
+	club ring, 2209, 500, 1;
+	sword ring, 2207, 500, 1;
+	axe ring, 2208, 500, 1;
+	dwarven ring, 2213, 2000, 1;
+	ring of healing, 2214, 2000, 1;
+	wedding ring, 2121, 990, 1;
+	stone skin amulet, 2197, 5000, 1;
+	elven amulet, 2198, 500, 1;
+	garlic neclace, 2199, 100, 1;
+	dragon neclace, 2201, 100, 1;"/>
+	</parameters>
+</npc>

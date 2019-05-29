@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Soya" script="default.lua" walkinterval="2000" floorchange="0">
+	<health now="100" max="100" />
+	<look type="139" head="132" body="79" legs="97" feet="132" addons="1" />
+	<parameters>
+		<parameter key="message_greet" value="Hello |PLAYERNAME|. I buy helmets, armors, legs, boots, weapons and shields, just {trade}." />
+		<parameter key="message_decline" value="Is |TOTALCOST| gold coins too much for you? Get out of here!" />
+		<parameter key="module_shop" value="1" />
+        <parameter key="shop_sellable" value="
+		    soldier helmet, 2481, 6;
+			krimhorn helmet, 7461, 200;
+			viking helmet, 2473, 265;
+		    steel helmet, 2457, 293;
+			tribal mask, 3967, 250;
+			mystic turban, 2663,500;
+			strange helmet, 2479, 500;
+			crown helmet, 2491, 2500;
+			glacier mask, 7902, 2500;
+			terra hood, 7903, 2500;
+			magma monocle, 7900, 2500;
+			lightning headband, 7889, 2500;
+		    helmet of the deep, 5461, 5000;
+            warrior helmet, 2475, 5000;
+			crusader helmet, 2497, 6000;
+			bonelord helmet, 3972, 7500;
+            terra hood, 7903, 2500;
+            royal helmet, 2498, 30000;
+			skull helmet, 5741, 40000;
+			cobra crown,12630, 50000;
+			zaoan helmet,11302, 45000;
+			batwing hat,10016, 8000;
+			jade hat,11368, 9000;
+			
+			brass armor, 2465,50;
+			scale armor, 2483, 75;
+			ethno coat, 8892, 200;
+			chain armor, 2464, 200;
+			spirit cloak, 8870, 350;
+			dark armor, 2489, 400;
+			plate armor, 2463, 400;
+			belted cape, 8872, 500;
+			noble armor, 2486, 900;
+			flower dress, 9929, 1000;
+			leopard armor, 3968,1000;
+			hibiscus dress, 8873, 3000;
+			knight armor, 2476, 5000;
+			focus cape, 8871, 6000;
+			mammoth fur cape, 7463, 6000;
+			blue robe, 2656,10000;
+			lightning robe, 7898,11000;
+			glacier robe, 7897,11000;
+			terra mantle, 7884,11000;
+			magma coat, 7899, 11000;
+			zaoan robe,11356,12000;
+		    crown armor, 2487,12000;
+			spellweaver robe,11355, 12000;
+			zaoan armor,11301,14000;
+			swamplair armor, 8880, 16000;
+			crystalline armor, 8878, 16000;
+			spellweaver robe,11355, 12000;
+			paladin armor, 8891,15000;
+			lavos armor, 8877, 16000;
+			skullcracker armor, 8889, 18000;
+			golden armor, 2466, 20000;
+			dwarven armor, 2503, 30000;
+			dragon scale mail, 2492, 40000;
+			magic plate armor, 2472, 90000;
+			
+			
+			chain legs, 2648, 125;
+			brass legs, 2478, 149;
+			leaf legs, 9928, 500;
+			bast skirt, 3983, 750;
+			mammoth fur shorts, 7464, 1850;
+			knight legs, 2477, 5000;
+			glacier kilt, 7896, 11000;
+			lightning legs, 7895,11000;
+			magma legs, 7894, 11000;
+			terra legs, 7885, 11000;
+			crown legs, 2488, 12000;
+			zaoan legs, 11304, 14000;
+			golden legs, 2470, 30000;
+			
+			leather boots, 2643, 2;
+			boots of haste, 2195, 30000;
+			coconut shoes, 9931, 500;
+			crocodile boots, 3982,1000;
+			terra boots, 7886, 2500;
+			lightning boots, 7893, 2500;
+			glacier shoes, 7892, 2500;
+			magma boots, 7891, 2500;
+			pirate boots, 5462, 3000;
+			zaoan shoes,11303, 5000;
+			fur boots, 7457, 2000; 
+			steel boots, 2645, 30000;
+			guardian boots,11240, 35000;
+			draken boots,12646, 40000;
+			
+			brass shield, 2511,6;
+			copper shield, 2530, 50;
+			steel shield, 2509, 80;
+			bone shield, 2541, 80;
+			viking shield, 2531, 85;
+			battle shield, 2513, 95;
+			copper shield, 2530, 50;
+			dwarven shield, 2525, 100;
+			tortoise shield, 6131, 150;
+			dark shield, 2521, 400;
+			norse shield, 7460,500;
+			tusk shield, 3973, 850;
+			ancient shield, 2532, 900;
+			salamander shield, 3975, 1280;
+			guardian shield, 2515, 2000;
+			bonelord shield, 2518,2000;
+			scarab shield, 2540, 2000;
+			dragon shield, 2516, 4000;
+			castle shield, 2535, 5000;
+			vampire shield, 2534,5000;
+			tower shield, 2528, 8000;
+			crown shield, 2519, 8000;
+			medusa shield, 2536, 9000;
+			phoenix shield, 2539,16000;
+			demon shield, 2520, 30000;
+			tempest shield, 2542, 35000;
+			mastermind shield, 2514, 50000;
+			spellbook of enlightenment, 8900, 4000;
+			spellbook of lost souls, 8903,19000;
+			spellbook of mind control, 8902,13000;
+			spellbook of warding, 8901, 18000;
+			
+			beastslayer axe, 3962, 1500;
+			knight axe, 2430, 2000;
+			war axe, 7753, 2000;
+			naginata, 2426, 2000;
+			glorious axe, 7454, 3000;
+			titan axe, 7413, 4000;
+			angelic axe, 7436, 5000;
+			fire axe, 2432, 8000;
+			drakinata, 1305, 10000;
+			guardian halberd, 2427, 11000;
+			dreaded clever, 7419, 15000;
+			butcher axe, 7412, 18000;
+			ornamented axe, 7411, 20000;
+			vile axe, 7388, 30000;
+			heroic axe, 7389, 30000;
+			ruthless axe, 6553, 45000;
+			
+			staff, 2401, 40;
+			battle hammer, 2417, 350;
+			taurus mace, 7425, 500;
+			clerical mace, 2423, 540;
+			banana staff, 3966,1000;
+			furry club, 7432, 1000;
+			war hammer, 2391, 1200;
+			dragon hammer, 2434, 2000;
+			dragonbone staff, 7430, 3000;
+			diamond sceptre, 7387, 3000;
+			spiked squelcher, 7452, 5000;
+			skull staff, 2436, 6000;
+			sapphire hammer, 7437, 7000;
+			amber staff, 7426, 8000;
+			shadow sceptre, 7451, 10000;
+			drachaku, 11308, 10000;
+			bonebreaker, 7428, 10000;
+			chaos mace, 7427, 9000;
+			queen sceptre, 7410, 20000;
+			onyx flail, 7421, 22000;
+			jade hammer, 7422, 25000;
+			cranial basher, 7756, 30000;
+			hammer of wrath, 2444, 30000;
+			arcane staff, 2453, 42000;
+			heavy mace, 2452, 50000;
+			
+			
+			carlin sword, 2395, 118;
+			spike sword, 2383, 240;
+			two handed sword, 2377, 450;
+			broadsword, 2413, 500;
+			twin hooks,11309, 500;
+			wyvern fang, 7408,500;
+			crystal sword, 7449, 600;
+			serpent sword, 2409, 900;
+			ice rapier, 2396, 1000;
+			fire sword, 2392, 4000;
+			epee, 2438, 8000;
+			haunted blade, 7407, 8000;
+			mercenary sword, 7386, 12000;
+			djinn blade, 2451, 15000;
+			dragon slayer, 7402, 15000;
+			thaian sword, 7391, 16000;
+			sais,1306, 16500;
+			giant  sword, 2393, 17000;
+			assassin dagger, 7404, 20000;
+			pharoah sword, 2446, 23000;
+			relic sword, 7383, 25000;
+			twiceslicer,12613, 28000;
+			mystic blade, 7384, 30000;
+			zaoan sword,11307, 30000;
+			nightmare blade, 7418, 35000;
+			demonrage sword, 7382, 36000;
+			berserker, 7403, 40000;
+			
+			composite hornbow, 8855, 25000;
+			chain bolter, 8850, 40000;
+			arbalest, 5803, 42000;
+			
+            snakebite, 2182, 100;
+			moonlight rod, 2186, 200;
+			necrotic rod, 2185,1000;
+			northwind rod, 8911, 1500;
+			hailstorm rod, 2183,3000;
+			springsprout rod, 8912, 3600;
+			terra rod, 2181, 2000;
+			underworld rod, 8910, 4400;
+
+			
+			wand of vortex, 2190, 100;
+			wand of dragonbreath, 2191, 200;
+			wand of draconia, 8921, 500;
+			wand of decay, 2188, 1000;
+			wand of cosmic energy, 2189, 2000;
+			wand of inferno, 2187, 3000;
+			wand of starstorm, 8920, 3600;
+			wand of voodoo, 8922, 4400;
+			ring of the sky, 2123, 30000" />
+	</parameters>
+</npc>

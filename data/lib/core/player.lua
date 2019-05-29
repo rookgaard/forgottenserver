@@ -32,17 +32,17 @@ function Player.getDepotItems(self, depotId)
 	return self:getDepotChest(depotId, true):getItemHoldingCount()
 end
 
+local lossPercent = {
+	[0] = 100,
+	[1] = 70,
+	[2] = 45,
+	[3] = 25,
+	[4] = 10,
+	[5] = 0
+}
+
 function Player.getLossPercent(self)
 	local blessings = 0
-	local lossPercent = {
-		[0] = 100,
-		[1] = 70,
-		[2] = 45,
-		[3] = 25,
-		[4] = 10,
-		[5] = 0
-	}
-
 	for i = 1, 5 do
 		if self:hasBlessing(i) then
 			blessings = blessings + 1
@@ -95,4 +95,18 @@ function Player.addManaSpent(...)
 	local ret = addManaSpentFunc(...)
 	APPLY_SKILL_MULTIPLIER = true
 	return ret
+end
+
+function Player:getMissingHealth()
+    return self:getMaxHealth() - self:getHealth()
+end
+--[[Piso de Regeneracion/Regeneration tile]]--
+function Player:addPercentHealth(value)
+    local health = math.floor(self:getMissingHealth() * value+0.5)
+    local final = (health > 0 and health) or 1
+    if value <= 1.0 and self:getHealth() ~= self:getMaxHealth() then
+        self:addHealth(final)
+        return final
+    end
+    return 0
 end

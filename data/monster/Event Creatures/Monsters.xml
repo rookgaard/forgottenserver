@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Monsters" nameDescription="a Monsters" race="blood" experience="0" speed="0" manacost="0">
+	<health now="1000000" max="1000000" />
+	<look type="123" corpse="6080" />
+	<targetchange interval="0" chance="0" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="0" />
+		<flag canpushcreatures="0" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="melee" interval="2000" skill="0" attack="0" />
+	</attacks>
+	<defenses armor="17" defense="23">
+		<defense name="outfit" interval="1500" chance="10" monster="bog raider" duration="5000">
+			<attribute key="areaEffect" value="smallplants" />
+		</defense>
+		<defense name="outfit" interval="1500" chance="10" monster="v" duration="5000">
+			<attribute key="areaEffect" value="redspark" />
+		</defense>
+		<defense name="outfit" interval="1500" chance="10" monster="young sea serpent" duration="5000">
+			<attribute key="areaEffect" value="bluebubble" />
+		</defense>
+		<defense name="outfit" interval="1500" chance="10" monster="haunted treeling" duration="5000">
+			<attribute key="areaEffect" value="poff" />
+		</defense>
+		<defense name="outfit" interval="1500" chance="10" monster="nightmare scion" duration="5000">
+			<attribute key="areaEffect" value="smallplants" />
+		</defense>
+		<defense name="outfit" interval="1500" chance="10" monster="gozzler" duration="5000">
+			<attribute key="areaEffect" value="groundshaker" />
+		</defense>
+        <defense name="outfit" interval="1500" chance="10" monster="frost dragon hatchling" duration="5000">
+			<attribute key="areaEffect" value="icetornado" />
+		</defense>
+		<defense name="outfit" interval="500" chance="10" monster="wyrm" duration="5000">
+			<attribute key="areaEffect" value="purpleenergy" />
+		</defense>
+		<defense name="outfit" interval="1500" chance="10" monster="rotworm" duration="5000">
+			<attribute key="areaEffect" value="insects" />
+		</defense>
+		<defense name="outfit" interval="1500" chance="10" monster="toad" duration="5000">
+			<attribute key="areaEffect" value="plantattack" />
+		</defense>
+		<defense name="healing" interval="10000" chance="100" min="1000000" max="1000000">
+			<attribute key="areaEffect" value="greennote" />
+		</defense>
+	</defenses>
+	<voices interval="5000" chance="10">
+		<voice sentence="Solo hay dos errores que se cometen en el camino a la verdad: No empezar, y no llegar hasta el final!" />
+		<voice sentence="La muerte no se teme, si se ha vivido sabiamente." />
+		<voice sentence="La paz viene de adentro, no la busques afuera." />
+		<voice sentence="Hay tres cosas que no se pueden ocultar por mucho tiempo: El sol, la luna y la verdad." />
+		<voice sentence="No vivas en el pasado, no imagines el futuro, concentra la mente en el momento presente." />
+		<voice sentence="Es la mente de un hombre, no sus amigos o enemigos, la que lo lleva por los caminos del mal." />
+	</voices>
+</monster>
+

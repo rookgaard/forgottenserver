@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Julie" script="default.lua" walkinterval="2000" speed="100" walkradius="4" floorchange="0">
+	<health max="150" now="150"/>
+    <look type="147" head="0" body="128" legs="10" feet="10" addons="2"/>
+	<parameters>
+		<!--MESSAGES-->
+		<parameter key="message_greet" value="Hola |PLAYERNAME|. I sell all types of decoration for your house, in this ocassion I will charge you 500 gold coins per item."/>
+		<parameter key="shop_buyable" value="
+		blue bed, 7904, 800;
+		green bed, 7905, 800;
+		red bed, 7906, 800;
+		yellow bed, 7907, 800;
+		
+		wooden chair, 3901, 150;
+		sofa chair, 3902, 300;
+		red cushioned chair, 3903, 400;
+		green cushioned chair, 3904, 400;
+		tusk chair, 3905, 25;
+		ivory chair, 3906, 25;
+		rocking chair, 3925, 25;
+		trunk chair, 3907, 20;
+
+		armor rack, 6115, 900;
+		barrel, 3932, 12;
+		box, 1738, 10;
+		wooden box, 1741, 10;
+		chest, 1740, 10;
+		crate, 1739, 10;
+		drawer, 1714, 18;
+		dresser, 3916, 25;
+		locker, 3918, 30;
+		trough, 3937, 7;
+		trunk, 3938, 10;
+		weapon rack, 6114, 90;
+
+		bird cage, 2095, 50;
+		water pipe, 2093, 40;
+		coal basin, 3912, 25;
+		chimney, 8692, 200;
+		cuckoo clock, 1877, 40;
+		globe, 3923, 50;
+		goldfish bowl, 5929, 50;
+		oven, 6372, 80;
+		pendelum clock, 3917, 75;
+		rocking horse, 3934, 30;
+		table lamp, 3924, 35;
+		telescope, 3935, 70;
+		harp, 3921, 50;
+		piano, 3926, 200;
+		trophy stan, 7936, 50;
+		amphora, 2023, 4;
+		large amphora, 3929, 50;
+		vase, 2008, 3;
+		goblin statue, 3930;
+		knight statue, 3927;
+		minotaur statue, 3928 50;
+
+		portrait, 1852, 50;
+		still life, 1854, 50;
+		oval mirror, 1845, 40;
+		edged mirror, 1848, 40;
+		round mirror, 1851, 40;
+		blue tapestry, 1872, 25;
+		green tapestry, 1860, 25;
+		orange tapestry, 1866, 25;
+		purple tapestry, 1875, 25;
+		red tapestry, 1869, 25;
+		white tapestry, 1880, 25;
+		yellow tapestry, 1863, 25;
+
+		indoor plant, 3931, 8;
+		potted flower, 2104, 5;
+		honey flower, 2103, 5;
+		god flowers, 2100, 5;
+		flower bowl, 2102, 6;
+
+		small purple pillow, 1678, 20;
+		small green pillow, 1679, 20;
+		small red pillow, 1680, 20;
+		small blue pillow, 1681, 20;
+		small orange pillow, 1682, 20;
+		small turquiose pillow, 1683, 20;
+		small white pillow, 1684, 20;
+		heart pillow, 1685, 20;
+		blue pillow, 1686, 25;
+		red pillow, 1687, 25;
+		green pillow, 1688, 25;
+		yellow pillow, 1689, 25;
+		round blue pillow, 1690, 25;
+		round red pillow, 1691, 25;
+		round purple pillow, 1692, 25;
+		round turquiose pillow, 1693, 25;
+
+		big table, 3909, 30;
+		square table, 3910, 30;
+		round table, 3911, 25;
+		small table, 3908, 20;
+		stone table, 3913, 30;
+		tusk table, 3914, 25;
+		trunk table, 3920, 20;
+		vial of oil, 2006, 20"/>
+	</parameters>
+</npc>

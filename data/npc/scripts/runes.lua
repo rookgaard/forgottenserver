@@ -1,11 +1,12 @@
 local keywordHandler = KeywordHandler:new()
 local npcHandler = NpcHandler:new(keywordHandler)
 NpcSystem.parseParameters(npcHandler)
+local talkState = {}
 
-function onCreatureAppear(cid)              npcHandler:onCreatureAppear(cid)            end
-function onCreatureDisappear(cid)           npcHandler:onCreatureDisappear(cid)         end
-function onCreatureSay(cid, type, msg)      npcHandler:onCreatureSay(cid, type, msg)    end
-function onThink()                          npcHandler:onThink()                        end
+function onCreatureAppear(cid)				npcHandler:onCreatureAppear(cid)			end
+function onCreatureDisappear(cid) 			npcHandler:onCreatureDisappear(cid)			end
+function onCreatureSay(cid, type, msg)			npcHandler:onCreatureSay(cid, type, msg)		end
+function onThink()					npcHandler:onThink()					end
 
 local shopModule = ShopModule:new()
 npcHandler:addModule(shopModule)
@@ -42,18 +43,18 @@ shopModule:addBuyableItem({'paralyze'}, 2278, 700, 1, 'paralyze rune')
 shopModule:addBuyableItem({'animate dead'}, 2316, 375, 1, 'animate dead rune')
 shopModule:addBuyableItem({'convince creature'}, 2290, 80, 1, 'convince creature rune')
 shopModule:addBuyableItem({'chameleon'}, 2291, 210, 1, 'chameleon rune')
-shopModule:addBuyableItem({'desintegrate'}, 2310, 80, 3, 'desintegreate rune')
+shopModule:addBuyableItem({'desintegrate'}, 2310, 80,  3, 'desintegreate rune')
 
-shopModule:addBuyableItemContainer({'bp ap'}, 2002, 8378, 2000, 1, 'backpack of antidote potions')
-shopModule:addBuyableItemContainer({'bp slhp'}, 2000, 8610, 400, 1, 'backpack of small health potions')
+shopModule:addBuyableItemContainer({'bp slhp'}, 2000, 8704, 400, 1, 'backpack of small health potions')
 shopModule:addBuyableItemContainer({'bp hp'}, 2000, 7618, 900, 1, 'backpack of health potions')
 shopModule:addBuyableItemContainer({'bp mp'}, 2001, 7620, 1000, 1, 'backpack of mana potions')
 shopModule:addBuyableItemContainer({'bp shp'}, 2000, 7588, 2000, 1, 'backpack of strong health potions')
 shopModule:addBuyableItemContainer({'bp smp'}, 2001, 7589, 1600, 1, 'backpack of strong mana potions')
 shopModule:addBuyableItemContainer({'bp ghp'}, 2000, 7591, 3800, 1, 'backpack of great health potions')
 shopModule:addBuyableItemContainer({'bp gmp'}, 2001, 7590, 2400, 1, 'backpack of great mana potions')
-shopModule:addBuyableItemContainer({'bp gsp'}, 1999, 8376, 3800, 1, 'backpack of great spirit potions')
-shopModule:addBuyableItemContainer({'bp uhp'}, 2000, 8377, 6200, 1, 'backpack of ultimate health potions')
+shopModule:addBuyableItemContainer({'bp gsp'}, 1999, 8472, 3800, 1, 'backpack of great spirit potions')
+shopModule:addBuyableItemContainer({'bp uhp'}, 2000, 8473, 6200, 1, 'backpack of ultimate health potions')
+shopModule:addBuyableItemContainer({'bp ap'}, 2002, 8474, 2000, 1, 'backpack of antidote potions')
 
 shopModule:addBuyableItem({'wand of vortex', 'vortex'}, 2190, 500, 'wand of vortex')
 shopModule:addBuyableItem({'wand of dragonbreath', 'dragonbreath'}, 2191, 1000, 'wand of dragonbreath')
@@ -83,7 +84,7 @@ shopModule:addSellableItem({'wand of starstorm', 'starstorm'}, 8920, 9000, 'wand
 shopModule:addSellableItem({'wand of voodoo', 'voodoo'}, 8922, 11000, 'wand of voodoo')
 
 shopModule:addSellableItem({'snakebite rod', 'snakebite'}, 2182, 250,'snakebite rod')
-shopModule:addSellableItem({'moonlight rod', 'moonlight'}, 2186, 500, 'moonlight rod')
+shopModule:addSellableItem({'moonlight rod', 'moonlight'}, 2186, 500,   'moonlight rod')
 shopModule:addSellableItem({'necrotic rod', 'necrotic'}, 2185, 2500, 'necrotic rod')
 shopModule:addSellableItem({'northwind rod', 'northwind'}, 8911, 3750, 'northwind rod')
 shopModule:addSellableItem({'terra rod', 'terra'}, 2181, 5000, 'terra rod')
@@ -91,42 +92,34 @@ shopModule:addSellableItem({'hailstorm rod', 'hailstorm'}, 2183, 7500, 'hailstor
 shopModule:addSellableItem({'springsprout rod', 'springsprout'}, 8912, 9000, 'springsprout rod')
 shopModule:addSellableItem({'underworld rod', 'underworld'}, 8910, 11000, 'underworld rod')
 
-
+local items = {[1] = 2190, [2] = 2182, [5] = 2190, [6] = 2182}
 function creatureSayCallback(cid, type, msg)
-	if not npcHandler:isFocused(cid) then
+	if(not npcHandler:isFocused(cid)) then
 		return false
 	end
 
-	local player = Player(cid)
-	local items = {
-		[1] = 2190,
-		[2] = 2182,
-		[5] = 2190,
-		[6] = 2182
-	}
-
-	if msgcontains(msg, 'first rod') or msgcontains(msg, 'first wand') then
-		local vocationId = player:getVocation():getId()
-		if isInArray({1, 2, 5, 6}, vocationId) then
-			if player:getStorageValue(30002) == -1 then
-				selfSay('So you ask me for a {' .. ItemType(items[vocationId]):getName() .. '} to begin your advanture?', cid)
-				npcHandler.topic[cid] = 1
+	local talkUser = NPCHANDLER_CONVBEHAVIOR == CONVERSATION_DEFAULT and 0 or cid
+	if(msgcontains(msg, 'first rod') or msgcontains(msg, 'first wand')) then
+		if(isSorcerer(cid) or isDruid(cid)) then
+			if(getPlayerStorageValue(cid, 30002) <= 0) then
+				selfSay('So you ask me for a {' .. getItemName(items[getPlayerVocation(cid)]) .. '} to begin your advanture?', cid)
+				talkState[talkUser] = 1
 			else
-				selfSay('What? I have already gave you one {' .. ItemType(items[vocationId]):getName() .. '}!', cid)
+				selfSay('What? I have already gave you one {' .. getItemName(items[getPlayerVocation(cid)]) .. '}!', cid)
 			end
 		else
 			selfSay('Sorry, you aren\'t a druid either a sorcerer.', cid)
 		end
-	elseif msgcontains(msg, 'yes') then
-		if npcHandler.topic[cid] == 1 then
-			player:addItem(items[vocationId], 1)
+	elseif(msgcontains(msg, 'yes')) then
+		if(talkState[talkUser] == 1) then
+			doPlayerAddItem(cid, items[getPlayerVocation(cid)], 1)
 			selfSay('Here you are young adept, take care yourself.', cid)
-			player:setStorageValue(30002, 1)
+			setPlayerStorageValue(cid, 30002, 1)
 		end
-		npcHandler.topic[cid] = 0
-	elseif msgcontains(msg, 'no') and npcHandler.topic[cid] == 1 then
+		talkState[talkUser] = 0
+	elseif(msgcontains(msg, 'no') and isInArray({1}, talkState[talkUser])) then
 		selfSay('Ok then.', cid)
-		npcHandler.topic[cid] = 0
+		talkState[talkUser] = 0
 	end
 
 	return true

@@ -6,28 +6,28 @@ protectionLevel = 1
 killsToRedSkull = 3
 killsToBlackSkull = 6
 pzLocked = 60000
-removeChargesFromRunes = true
+removeChargesFromRunes = false
 timeToDecreaseFrags = 24 * 60 * 60 * 1000
-whiteSkullTime = 15 * 60 * 1000
+whiteSkullTime = 1 * 60 * 1000
 stairJumpExhaustion = 2000
 experienceByKillingPlayers = false
 expFromPlayersLevelRange = 75
 
 -- Connection Config
 -- NOTE: maxPlayers set to 0 means no limit
-ip = "127.0.0.1"
+ip = "190.74.213.37"
 bindOnlyGlobalAddress = false
 loginProtocolPort = 7171
 gameProtocolPort = 7172
 statusProtocolPort = 7171
 maxPlayers = 0
-motd = "Welcome to The Forgotten Server!"
+motd = "Welcome to Odisea OT!"
 onePlayerOnlinePerAccount = true
 allowClones = false
-serverName = "Forgotten"
+serverName = "Odisea OT"
 statusTimeout = 5000
 replaceKickOnLogin = true
-maxPacketsPerSecond = 25
+maxPacketsPerSecond = 250
 
 -- Deaths
 -- NOTE: Leave deathLosePercent as -1 if you want to use the default
@@ -37,38 +37,36 @@ deathLosePercent = -1
 
 -- Houses
 -- NOTE: set housePriceEachSQM to -1 to disable the ingame buy house functionality
-housePriceEachSQM = 1000
+housePriceEachSQM = 3000
 houseRentPeriod = "never"
 
 -- Item Usage
+timeBetweenActions = 0
+timeBetweenExActions = 0
+--[[
 timeBetweenActions = 200
 timeBetweenExActions = 1000
+]]--
 
 -- Map
 -- NOTE: set mapName WITHOUT .otbm at the end
-mapName = "forgotten"
-mapAuthor = "Komic"
-
--- Market
-marketOfferDuration = 30 * 24 * 60 * 60
-premiumToCreateMarketOffer = true
-checkExpiredMarketOffersEachMinutes = 60
-maxMarketOffersAtATimePerPlayer = 100
+mapName = "world"
+mapAuthor = "Pharos"
 
 -- MySQL
-mysqlHost = "127.0.0.1"
-mysqlUser = "forgottenserver"
-mysqlPass = ""
-mysqlDatabase = "forgottenserver"
+mysqlHost = "localhost"
+mysqlUser = "root"
+mysqlPass = "25574917"
+mysqlDatabase = "odisea"
 mysqlPort = 3306
 mysqlSock = ""
 
 -- Misc.
 allowChangeOutfit = true
-freePremium = false
+freePremium = true
 kickIdlePlayerAfterMinutes = 15
 maxMessageBuffer = 4
-emoteSpells = false
+emoteSpells = true
 classicEquipmentSlots = false
 
 -- Rates

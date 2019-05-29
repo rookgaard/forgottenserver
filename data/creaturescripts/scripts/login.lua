@@ -32,5 +32,8 @@ function onLogin(player)
 	-- Events
 	player:registerEvent("PlayerDeath")
 	player:registerEvent("DropLoot")
+	player:registerEvent("inquisitionBosses")
+	player:setOutfit(player:getOutfit())
+	
 	return true
 end

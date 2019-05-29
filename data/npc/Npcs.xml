@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Npcs" script="default.lua" walkinterval="2000" speed="0" walkradius="4" floorchange="0">
+	<health max="150" now="150"/>
+	<look type="130" head="38" body="131" legs="131" feet="0" addons="0" mount="0"/>
+	
+</npc>
