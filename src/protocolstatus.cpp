@@ -117,7 +117,32 @@ void ProtocolStatus::sendStatusString()
 	owner.append_attribute("email") = g_config.getString(ConfigManager::OWNER_EMAIL).c_str();
 
 	pugi::xml_node players = tsqp.append_child("players");
-	players.append_attribute("online") = std::to_string(g_game.getPlayersOnline()).c_str();
+
+	int32_t real = 0;
+	std::map<uint32_t, uint32_t> listIP;
+
+	for (const auto& it : g_game.getPlayers()) {
+		uint32_t playerIP = it.second->getIP();
+
+		if (playerIP == 0) {
+			continue;
+		}
+
+		auto ip = listIP.find(playerIP);
+
+		if (ip != listIP.end()) {
+			listIP[playerIP]++;
+			if (listIP[playerIP] < 5 || convertIPToString(playerIP) == g_config.getString(ConfigManager::PROXY_IP)) {
+				real++;
+			}
+		} else {
+			listIP[playerIP] = 1;
+			real++;
+		}
+	}
+
+	players.append_attribute("online") = std::to_string(real).c_str();
+	
 	players.append_attribute("max") = std::to_string(g_config.getNumber(ConfigManager::MAX_PLAYERS)).c_str();
 	players.append_attribute("peak") = std::to_string(g_game.getPlayersRecord()).c_str();
 

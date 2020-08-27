@@ -68,6 +68,7 @@ class ConfigManager
 			URL,
 			LOCATION,
 			IP,
+			PROXY_IP,
 			MOTD,
 			WORLD_TYPE,
 			MYSQL_HOST,
