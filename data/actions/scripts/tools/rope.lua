@@ -4,10 +4,10 @@ function onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 		if (player:getAutoLootItem(itemType:getId())) then
 			player:removeAutoLootItem(itemType:getId())
-			return ziel(player, "You're not auto looting " .. itemType:getName() .. ' [ID: ' .. itemType:getId() .. '] anymore.')
+			return player:sendTextMessage(MESSAGE_INFO_DESCR, "You're not auto looting " .. itemType:getName() .. ' [ID: ' .. itemType:getId() .. '] anymore.')
 		else
 			player:addAutoLootItem(itemType:getId())
-			return ziel(player, "You're now auto looting " .. itemType:getName() .. ' [ID: ' .. itemType:getId() .. '].')
+			return player:sendTextMessage(MESSAGE_INFO_DESCR, "You're now auto looting " .. itemType:getName() .. ' [ID: ' .. itemType:getId() .. '].')
 		end
 	end
 
