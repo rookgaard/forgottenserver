@@ -46,3 +46,25 @@ function Container.createLootItem(self, item)
 	end
 	return true
 end
+
+function Container.getItems(self)
+	local items = {}
+
+	for index = 0, self:getSize() - 1 do
+		local item = self:getItem(index)
+
+		if (item) then
+			if (item:isContainer()) then
+				local containerItems = item:getItems()
+
+				for _, item in ipairs(containerItems) do
+					table.insert(items, item)
+				end
+			else
+				table.insert(items, item)
+			end
+		end
+	end
+
+	return items
+end

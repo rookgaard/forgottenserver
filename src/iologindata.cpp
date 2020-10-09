@@ -571,6 +571,25 @@ bool IOLoginData::loadPlayer(Player* player, DBResult_ptr result)
 		} while (result->next());
 	}
 
+	//load autoloot
+	query.str(std::string());
+	query << "SELECT `list` FROM `player_autoloot` WHERE `player_id` = " << player->getGUID();
+
+	if ((result = db.storeQuery(query.str()))) {
+		unsigned long lootlistSize;
+		const char* autolootlist = result->getStream("list", lootlistSize);
+		PropStream propStreamList;
+		propStreamList.init(autolootlist, lootlistSize);
+
+		int16_t value;
+		int16_t item = propStreamList.read<int16_t>(value);
+
+		while (item) {
+			player->addAutoLootItem(value);
+			item = propStreamList.read<int16_t>(value);
+		}
+	}
+
 	//load vip
 	query.str(std::string());
 	query << "SELECT `player_id` FROM `account_viplist` WHERE `account_id` = " << player->getAccount();
@@ -876,6 +895,37 @@ bool IOLoginData::savePlayer(Player* player)
 
 	if (!storageQuery.execute()) {
 		return false;
+	}
+
+	//save autolootlist
+	query.str(std::string());
+	query << "DELETE FROM `player_autoloot` WHERE `player_id` = " << player->getGUID();
+
+	if (!db.executeQuery(query.str())) {
+		return false;
+	}
+
+	if (player->autoLootList.size()) {
+		PropWriteStream propWriteStreamAutoLoot;
+
+		for (auto i : player->autoLootList) {
+			propWriteStreamAutoLoot.write<uint16_t>(i);
+		}
+
+		DBInsert autolootQuery("INSERT INTO `player_autoloot` (`player_id`, `list`) VALUES ");
+
+		size_t lootlistSize;
+		const char* autolootlist = propWriteStreamAutoLoot.getStream(lootlistSize);
+		query.str(std::string());
+		query << player->getGUID() << ',' << db.escapeBlob(autolootlist, lootlistSize);
+
+		if (!autolootQuery.addRow(query)) {
+			return false;
+		}
+
+		if (!autolootQuery.execute()) {
+			return false;
+		}
 	}
 
 	//End the transaction
