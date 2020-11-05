@@ -2450,6 +2450,7 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Player", "hasChaseMode", LuaScriptInterface::luaPlayerHasChaseMode);
 	registerMethod("Player", "hasSecureMode", LuaScriptInterface::luaPlayerHasSecureMode);
 	registerMethod("Player", "getFightMode", LuaScriptInterface::luaPlayerGetFightMode);
+
 	registerMethod("Player", "getStoreInbox", LuaScriptInterface::luaPlayerGetStoreInbox);
 
 	registerMethod("Player", "addAutoLootItem", LuaScriptInterface::luaPlayerAddAutoLootItem);
@@ -9903,12 +9904,21 @@ int LuaScriptInterface::luaPlayerGetFightMode(lua_State* L)
 int LuaScriptInterface::luaPlayerGetStoreInbox(lua_State* L)
 {
 	// player:getStoreInbox()
-	Container* storeInbox = player->getStoreInbox();
-	if (!storeInbox) {
-		pushUserdata<Container>(L, storeInbox);
-		setMetatable(L, -1, "Container");
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
 		return 1;
 	}
+
+	Container* storeInbox = player->getStoreInbox();
+	if (!storeInbox) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	pushUserdata<Container>(L, storeInbox);
+	setMetatable(L, -1, "Container");
+	return 1;
 }
 
 int LuaScriptInterface::luaPlayerAddAutoLootItem(lua_State* L)
