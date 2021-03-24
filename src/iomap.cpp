@@ -132,22 +132,40 @@ bool IOMap::loadMap(Map* map, const std::string& fileName)
 			return false;
 		}
 
-		for (auto& mapDataNode : mapNode.children) {
-			if (mapDataNode.type == OTBM_TILE_AREA) {
-				if (!parseTileArea(loader, mapDataNode, *map)) {
+		int32_t childrenCount = mapNode.children.size();
+
+		for (size_t i = 0; i < childrenCount; i++) {
+			if (mapNode.children[i].type == OTBM_TILE_AREA) {
+				if (!parseTileArea(loader, mapNode.children[i], *map)) {
 					return false;
 				}
-			} else if (mapDataNode.type == OTBM_TOWNS) {
-				if (!parseTowns(loader, mapDataNode, *map)) {
+			} else if (mapNode.children[i].type == OTBM_TOWNS) {
+				if (!parseTowns(loader, mapNode.children[i], *map)) {
 					return false;
 				}
-			} else if (mapDataNode.type == OTBM_WAYPOINTS && headerVersion > 1) {
-				if (!parseWaypoints(loader, mapDataNode, *map)) {
+			} else if (mapNode.children[i].type == OTBM_WAYPOINTS && headerVersion > 1) {
+				if (!parseWaypoints(loader, mapNode.children[i], *map)) {
 					return false;
 				}
 			} else {
 				setLastErrorString("Unknown map node.");
 				return false;
+			}
+
+			if (g_config.getBoolean(ConfigManager::DISPLAY_MAP_PROGRESS)) {
+				std::cout << "> Loaded [";
+				float progress = ((i * 1.0) / childrenCount);
+				int barWidth = 70;
+				int pos = barWidth * progress;
+
+				for (int j = 0; j < barWidth; ++j) {
+					if (j < pos) std::cout << "=";
+					else if (j == pos) std::cout << ">";
+					else std::cout << " ";
+				}
+
+				std::cout << "] " << int(progress * 100.0) << "%\r";
+				std::cout.flush();
 			}
 		}
 	} catch (const OTB::InvalidOTBFormat& err) {
