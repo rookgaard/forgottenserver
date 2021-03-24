@@ -154,7 +154,7 @@ bool IOMap::loadMap(Map* map, const std::string& fileName)
 
 			if (g_config.getBoolean(ConfigManager::DISPLAY_MAP_PROGRESS)) {
 				std::cout << "> Loaded [";
-				float progress = ((i * 1.0) / childrenCount);
+				float progress = (((i + 1) * 1.0) / childrenCount);
 				int barWidth = 70;
 				int pos = barWidth * progress;
 
