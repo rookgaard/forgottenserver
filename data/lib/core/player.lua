@@ -1,4 +1,5 @@
 local foodCondition = Condition(CONDITION_REGENERATION, CONDITIONID_DEFAULT)
+local json = require('data/lib/core/json')
 
 function Player.feed(self, food)
 	local condition = self:getCondition(CONDITION_REGENERATION, CONDITIONID_DEFAULT)
@@ -106,7 +107,7 @@ function Player.isUsingOtClient(self)
 	return self:getClient().os >= CLIENTOS_OTCLIENT_LINUX
 end
 
-function Player.sendExtendedOpcode(self, opcode, buffer)
+function Player.sendExtendedOpcode(self, opcode, buffer, json)
 	if not self:isUsingOtClient() then
 		return false
 	end
@@ -114,7 +115,13 @@ function Player.sendExtendedOpcode(self, opcode, buffer)
 	local networkMessage = NetworkMessage()
 	networkMessage:addByte(0x32)
 	networkMessage:addByte(opcode)
-	networkMessage:addString(buffer)
+
+	if (json) then
+		networkMessage:addString(json.encode(buffer))
+	else
+		networkMessage:addString(buffer)
+	end
+
 	networkMessage:sendToPlayer(self)
 	networkMessage:delete()
 	return true

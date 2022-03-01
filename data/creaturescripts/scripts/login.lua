@@ -27,6 +27,8 @@ function onLogin(player)
 		player:setVocation(vocation:getDemotion())
 	end
 
+	Cooking.sendData(player)
+
 	-- Events
 	player:registerEvent("PlayerDeath")
 	player:registerEvent("DropLoot")
