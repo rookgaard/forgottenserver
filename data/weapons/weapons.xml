@@ -599,7 +599,7 @@
 	<distance id="2399" breakchance="10" /> <!-- Throwing Star -->
 	<distance id="2410" breakchance="7" /> <!-- Throwing Knife -->
 	<distance id="2543" action="removecount" /> <!-- Bolt -->
-	<distance id="2544" action="removecount" /> <!-- Arrow -->
+	<distance id="2544" action="removecount" script="arrow.lua" /> <!-- Arrow -->
 	<distance id="2545" action="removecount" script="poison_arrow.lua" />
 	<distance id="2546" action="removecount" script="burst_arrow.lua" />
 	<distance id="2547" action="removecount" unproperly="1" level="55" /> <!-- Power Bolt -->

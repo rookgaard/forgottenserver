@@ -15,5 +15,7 @@ combat:setFormula(COMBAT_FORMULA_SKILL, 0, 0, 1, 0)
 combat:setArea(area)
 
 function onUseWeapon(player, variant)
+	drill(player, variant, COMBAT_PHYSICALDAMAGE, CONST_ME_ENERGYHIT, CONST_ANI_DIAMONDARROW, 10000)
+
 	return combat:execute(player, variant)
 end

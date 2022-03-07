@@ -14,5 +14,8 @@ function onUseWeapon(player, variant)
 	end
 
 	player:addDamageCondition(Creature(variant:getNumber()), CONDITION_POISON, DAMAGELIST_LOGARITHMIC_DAMAGE, 2)
+
+	drill(player, variant, COMBAT_PHYSICALDAMAGE, CONST_ME_DRAWBLOOD, CONST_ANI_GREENSTAR, 10000)
+
 	return true
 end

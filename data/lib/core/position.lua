@@ -79,3 +79,7 @@ function Position:notifySummonAppear(summon)
 		end
 	end
 end
+
+function Position:clone()
+	return Position(self.x, self.y, self.z)
+end

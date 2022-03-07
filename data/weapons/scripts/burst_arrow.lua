@@ -17,5 +17,7 @@ function onUseWeapon(player, variant)
 		return false
 	end
 
+	drill(player, variant, COMBAT_PHYSICALDAMAGE, CONST_ME_EXPLOSIONAREA, CONST_ANI_BURSTARROW, 15000)
+
 	return combat:execute(player, variant)
 end

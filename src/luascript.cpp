@@ -2686,6 +2686,8 @@ void LuaScriptInterface::registerFunctions()
 
 	registerMethod("Player", "getIdleTime", LuaScriptInterface::luaPlayerGetIdleTime);
 
+	registerMethod("Player", "getWeaponDamage", LuaScriptInterface::luaPlayerGetWeaponDamage);
+
 	// Monster
 	registerClass("Monster", "Creature", LuaScriptInterface::luaMonsterCreate);
 	registerMetaMethod("Monster", "__eq", LuaScriptInterface::luaUserdataCompare);
@@ -10738,6 +10740,34 @@ int LuaScriptInterface::luaPlayerGetIdleTime(lua_State* L)
 	}
 
 	lua_pushnumber(L, player->getIdleTime());
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerGetWeaponDamage(lua_State* L)
+{
+	// player:getWeaponDamage()
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	Item* tool = player->getWeapon();
+
+	if (!tool) {
+		lua_pushnil(L);
+		return 1;
+	}
+	
+	const Weapon* weapon = g_weapons->getWeapon(tool);
+
+	if (!weapon) {
+		lua_pushnil(L);
+		return 1;
+	}
+	
+	int32_t damage = weapon->getWeaponDamage(player, nullptr, tool);
+	lua_pushnumber(L, damage);
 	return 1;
 }
 
